@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GroundCheck : MonoBehaviour 
 {
     [SerializeField] LayerMask _groundLayer;
     [SerializeField] float _overLapCircleRadius;
-    private bool _isGrounded;
+    [SerializeField] Transform _overlapPoint;
+
+    [field:SerializeField] public bool IsGrounded { get; private set; }
 
     private void Update()
     {
-        RaycastGroundChecker();
+        IsGrounded = RaycastGroundChecker();
     }
 
-    public bool RaycastGroundChecker()
+    private bool RaycastGroundChecker()
     {
-        _isGrounded = Physics2D.OverlapCircle(transform.position, _overLapCircleRadius, _groundLayer);
-        if( _isGrounded ) 
-        {
-            Debug.Log("&&Мы на земле");
-            return true;
-        }
-        else 
-        {
-            Debug.Log("&&Мы не на земле");
-            return false;
-        }
+        return Physics2D.OverlapCircle(_overlapPoint.position, _overLapCircleRadius, _groundLayer);
     }
+
+  /*  private void OnDrawGizmos()
+    {
+        Gizmos.DrawSphere(_overlapPoint.position, _overLapCircleRadius);
+    }*/
 }

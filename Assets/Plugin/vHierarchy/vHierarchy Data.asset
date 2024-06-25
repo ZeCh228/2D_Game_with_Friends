@@ -23,6 +23,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-a32cf13bee26fb6449f0e5975527547d-1312723636-0
         - globalObjectIdString: GlobalObjectId_V1-2-a32cf13bee26fb6449f0e5975527547d-117000281-0
         - globalObjectIdString: GlobalObjectId_V1-2-a32cf13bee26fb6449f0e5975527547d-40702049-0
+        - globalObjectIdString: GlobalObjectId_V1-2-a32cf13bee26fb6449f0e5975527547d-2065262386-0
         values:
         - colorIndex: 0
           iconNameOrGuid: AvatarMask On Icon
@@ -34,3 +35,5 @@ MonoBehaviour:
           iconNameOrGuid: Terrain Icon
         - colorIndex: 0
           iconNameOrGuid: AvatarMask On Icon
+        - colorIndex: 0
+          iconNameOrGuid: Camera Icon

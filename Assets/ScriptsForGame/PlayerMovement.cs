@@ -4,12 +4,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] float jumpheight;
-    [SerializeField] Transform groundCheck;
+    [SerializeField] GroundCheck _groundCheck;
     [SerializeField] InputManager _inputManager;
 
 
     private Rigidbody2D _rb;
-    private bool _isGrounded;
     private Animator anim;
 
     void Start()
@@ -19,22 +18,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        int DirectionX;
-        bool JumpIsPressed;
-        Jump(out DirectionX, out JumpIsPressed);
+        int DirectionX = Move();
+        Jump();
 
         Flip(DirectionX);
-        CheckGround();
     }
 
-    private void Jump(out int DirectionX, out bool JumpIsPressed)
+    private int Move()
     {
-        DirectionX = _inputManager.ReadMovement();
-        JumpIsPressed = _inputManager.JumpIsPressed();
-
+        int DirectionX = _inputManager.ReadMovement();
         _rb.velocity = new Vector2(DirectionX * speed, _rb.velocity.y);
+        return DirectionX;
+    }
 
-        if (JumpIsPressed && _isGrounded)
+    private void Jump()
+    {
+        bool JumpIsPressed = _inputManager.JumpIsPressed();
+
+        if (JumpIsPressed && _groundCheck.IsGrounded == true)
         {
             _rb.AddForce(transform.up * jumpheight, ForceMode2D.Impulse);
         }
@@ -42,20 +43,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Flip(int DirectionX)
     {
-        if (DirectionX < 0) 
+        if (DirectionX > 0) 
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-            
-        if (DirectionX > 0) 
+        }    
+        else if (DirectionX < 0) 
         { 
             transform.localRotation = Quaternion.Euler(0, 180, 0); 
         }  
     }
-
-    void CheckGround()
-    {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 1);
-        _isGrounded = colliders.Length > 1;
-    }  
 }

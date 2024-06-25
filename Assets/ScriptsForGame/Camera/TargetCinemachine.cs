@@ -4,7 +4,6 @@ public class TargetCinemachine : MonoBehaviour
 {
     [SerializeField] Transform _player1;
     [SerializeField] Transform _player2;
-
     private void Update()
     {
         transform.position = new Vector3(SearchAverage(), this.transform.position.y, this.transform.position.z);
