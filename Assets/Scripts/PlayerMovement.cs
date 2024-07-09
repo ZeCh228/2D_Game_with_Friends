@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float speed;
-    [SerializeField] float jumpheight;
-    [SerializeField] GroundCheck _groundCheck;
-    [SerializeField] InputManager _inputManager;
-
-
-    private Rigidbody2D _rb;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float jumpheight;
+    [SerializeField] protected GroundCheck _groundCheck;
+    [SerializeField] protected InputManager _inputManager;
+    
+    protected Rigidbody2D _rb;
     private Animator anim;
 
+    
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -18,20 +18,25 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        CheckInput();
+    }
+
+    protected virtual void CheckInput()
+    {
         int DirectionX = Move();
         Jump();
 
         Flip(DirectionX);
     }
 
-    private int Move()
+    protected int Move()
     {
         int DirectionX = _inputManager.ReadMovement();
         _rb.velocity = new Vector2(DirectionX * speed, _rb.velocity.y);
         return DirectionX;
     }
 
-    private void Jump()
+    protected virtual void Jump()
     {
         bool JumpIsPressed = _inputManager.JumpIsPressed();
 
@@ -41,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Flip(int DirectionX)
+    protected void Flip(int DirectionX)
     {
         if (DirectionX > 0) 
         {

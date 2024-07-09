@@ -25,7 +25,7 @@ MonoBehaviour:
         - globalObjectIdString: GlobalObjectId_V1-2-a32cf13bee26fb6449f0e5975527547d-40702049-0
         - globalObjectIdString: GlobalObjectId_V1-2-a32cf13bee26fb6449f0e5975527547d-2065262386-0
         values:
-        - colorIndex: 0
+        - colorIndex: 5
           iconNameOrGuid: AvatarMask On Icon
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
@@ -33,7 +33,7 @@ MonoBehaviour:
           iconNameOrGuid: BoxCollider Icon
         - colorIndex: 0
           iconNameOrGuid: Terrain Icon
-        - colorIndex: 0
+        - colorIndex: 8
           iconNameOrGuid: AvatarMask On Icon
         - colorIndex: 0
           iconNameOrGuid: Camera Icon
